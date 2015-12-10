@@ -1,4 +1,7 @@
 <?php
+
+namespace Api;
+
 require_once 'Resource.php';
 use Api\Resource\Resource;
 
