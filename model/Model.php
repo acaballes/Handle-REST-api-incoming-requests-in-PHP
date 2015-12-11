@@ -81,16 +81,23 @@ class Query
     {
 	$str = array();
 	if (isset($data['name']))
-	    $str[] = "set name = '{$data['name']}'";
+	    $str[] = "name = '{$data['name']}'";
 	if (isset($data['description']))
-	    $str[] = "set description = '{$data['description']}'";
+	    $str[] = "description = '{$data['description']}'";
 	if (isset($data['price']))
-	    $str[] = "set price = '{$data['price']}'";
+	    $str[] = "price = '{$data['price']}'";
 
 	if (empty($str))
 	    return "Empty parameters found.";
 	$str = implode(',', $str);
-	print $str;
+
+	$this->connectDatabase();
+        $result = mysqli_query($this->mysqli, "UPDATE {$this->table} SET {$str} where id = {$data['id']}");
+        $this->closeConnection();
+        if ($result)
+            return "Successfully updated.";
+        else
+            return "There was an error in updating the data.";
     }
 }
 
