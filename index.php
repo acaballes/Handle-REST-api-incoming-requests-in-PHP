@@ -1,4 +1,8 @@
 <?php
+/**
+ * @author Algie Caballes <algie.developer@gmail.com>
+ * @des index that handles requests
+ */
 require_once('ApiResource.php');
 use Api\ApiResource;
 

@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * @author Algie Caballes <algie.developer@gmail.com>
+ * @desc An abstract class that handle api request
+ */
 namespace Api;
 
 abstract class AbstractResource
@@ -22,6 +25,8 @@ abstract class AbstractResource
     {
 	switch($this->method) {
         case 'DELETE':
+	    $this->request_data = $_GET;
+            break;
         case 'POST':
             $this->request_data = $_POST;
             break;

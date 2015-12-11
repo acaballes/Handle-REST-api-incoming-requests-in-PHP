@@ -1,4 +1,8 @@
 <?php
+/**
+ * @author Algie Caballes <algie.developer@gmail.com>
+ * @desc Api resource page that handle api request
+ */
 namespace Api;
 
 require_once('AbstractResource.php');
@@ -27,12 +31,32 @@ class ApiResource extends AbstractResource
 		$query = new Query($this->api_name);
                 return $query->getAllData();
 	    }
+
+	// POST REQUEST
         } else if ($this->method == 'POST') {
 	    $query = new Query($this->api_name);
 	    if (!empty($this->request_data))
 		return $query->addData($this->request_data);	
 	    else
 		return "Post data is empty.";
+
+	// DELETE REQUEST
+        } else if ($this->method == 'DELETE') {
+	    if (isset($this->request_data['id'])) {
+                $query = new Query($this->api_name);
+                return $query->removeData($this->request_data['id']);
+            } else {
+		return "Id is not defined.";
+	    }
+	
+	//PUT  REQUEST
+        } else if ($this->method == 'PUT') {
+            if (isset($this->request_data['id'])) {
+                $query = new Query($this->api_name);
+                return $query->updateData($this->request_data);
+            } else {
+                return "Id is not defined for PUT request.";
+            }
         }
      }
  }
