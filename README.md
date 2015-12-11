@@ -1,7 +1,7 @@
 # README #
 
 # installation #
-1. git clone https://acaballes@bitbucket.org/acaballes/algie-api.git
+1. git clone https://acaballes@bitbucket.org/acaballes/my-api.git
 2. You may set up a virtual host in the server or just the default is still okay
 3. create a database
 4. import the .sql file (data/product.sql) in your created database.
