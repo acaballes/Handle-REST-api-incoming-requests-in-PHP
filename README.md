@@ -5,7 +5,8 @@
 2. You may set up a virtual host in the server or just the default is still okay
 3. create a database
 4. import the .sql file (data/product.sql) in your created database.
-5. Everything is ready to go you can now call a simple api request
+5. Change your database configurations in config/config.php.
+6. Everything is ready to go you can now call a simple api request
 
 # API reference #
 # GET request #
