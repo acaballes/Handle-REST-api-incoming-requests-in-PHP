@@ -17,7 +17,7 @@ class Query
 
     protected function connectDatabase()
     {
-	$this->mysqli = mysqli_connect("localhost", "root", "algieadmin", "api");
+	$this->mysqli = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
 	if (mysqli_connect_errno()) {
     	    printf("Connect failed: %s\n", mysqli_connect_error());
     	    exit();
