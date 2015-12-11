@@ -4,6 +4,8 @@
  * @des index that handles requests
  */
 require_once('ApiResource.php');
+require_once('config/config.php');
+
 use Api\ApiResource;
 
 try {
