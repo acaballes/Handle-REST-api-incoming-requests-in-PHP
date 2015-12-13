@@ -13,15 +13,20 @@ use Model\Query;
 
 class ApiResource extends AbstractResource
 {
+    protected $authenticate = true;
     public function __construct($server, $request)
     {
 	parent::__construct($server, $request);
+	if (!isset($server['HTTP_AUTHENTICATON_HEADER']) || $server['HTTP_AUTHENTICATON_HEADER'] != '12345')
+	    $this->authenticate = false;
     }
 
     protected function product()
     {
 	// GET REQUEST
         if ($this->method == 'GET') {
+	    if (!$this->authenticate)
+		return "Error authenticating your access token.";
 	    // REQUEST PRODUCT BY ITS ID
 	    if (isset($this->request_data['id'])) {
 		$query = new Query($this->api_name);
@@ -34,6 +39,8 @@ class ApiResource extends AbstractResource
 
 	// POST REQUEST
         } else if ($this->method == 'POST') {
+	    if (!$this->authenticate)
+                return "Error authenticating your access token.";
 	    $query = new Query($this->api_name);
 	    if (!empty($this->request_data))
 		return $query->addData($this->request_data);	
@@ -42,6 +49,8 @@ class ApiResource extends AbstractResource
 
 	// DELETE REQUEST
         } else if ($this->method == 'DELETE') {
+	    if (!$this->authenticate)
+                return "Error authenticating your access token.";
 	    if (isset($this->request_data['id'])) {
                 $query = new Query($this->api_name);
                 return $query->removeData($this->request_data['id']);
@@ -51,6 +60,8 @@ class ApiResource extends AbstractResource
 	
 	//PUT  REQUEST
         } else if ($this->method == 'PUT') {
+	    if (!$this->authenticate)
+                return "Error authenticating your access token.";
             if (isset($this->request_data['id'])) {
                 $query = new Query($this->api_name);
                 return $query->updateData($this->request_data);
