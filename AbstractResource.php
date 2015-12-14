@@ -45,7 +45,8 @@ abstract class AbstractResource
     public function processRequest()
     {
 	if (method_exists($this, $this->api_name)) {
-            return $this->response($this->{$this->api_name}($this->request_data), 200);
+	    $res = $this->{$this->api_name}($this->request_data);
+            return $this->response($res[0], $res[1]);
         } else {
 	    return $this->response("Rest api {$this->api_name} not found", 404);
 	}

@@ -26,47 +26,47 @@ class ApiResource extends AbstractResource
 	// GET REQUEST
         if ($this->method == 'GET') {
 	    if (!$this->authenticate)
-		return "Error authenticating your access token.";
+		return array("Error authenticating your access token.", 405);
 	    // REQUEST PRODUCT BY ITS ID
 	    if (isset($this->request_data['id'])) {
 		$query = new Query($this->api_name);
-		return $query->getDataById($this->request_data['id']);
+		return array($query->getDataById($this->request_data['id']), 200);
 	    } else {
 		//REQUEST ALL PRODUCTS
 		$query = new Query($this->api_name);
-                return $query->getAllData();
+                return array($query->getAllData(), 200);
 	    }
 
 	// POST REQUEST
         } else if ($this->method == 'POST') {
 	    if (!$this->authenticate)
-                return "Error authenticating your access token.";
+                return array("Error authenticating your access token.", 405);
 	    $query = new Query($this->api_name);
 	    if (!empty($this->request_data))
-		return $query->addData($this->request_data);	
+		return array($query->addData($this->request_data), 200);	
 	    else
-		return "Post data is empty.";
+		return array("Post data is empty.", 500);
 
 	// DELETE REQUEST
         } else if ($this->method == 'DELETE') {
 	    if (!$this->authenticate)
-                return "Error authenticating your access token.";
+                return array("Error authenticating your access token.", 405);
 	    if (isset($this->request_data['id'])) {
                 $query = new Query($this->api_name);
-                return $query->removeData($this->request_data['id']);
+                return array($query->removeData($this->request_data['id']),200);
             } else {
-		return "Id is not defined.";
+		return array("Id is not defined.", 500);
 	    }
 	
 	//PUT  REQUEST
         } else if ($this->method == 'PUT') {
 	    if (!$this->authenticate)
-                return "Error authenticating your access token.";
+                return array("Error authenticating your access token.", 405);
             if (isset($this->request_data['id'])) {
                 $query = new Query($this->api_name);
-                return $query->updateData($this->request_data);
+                return array($query->updateData($this->request_data), 200);
             } else {
-                return "Id is not defined for PUT request.";
+                return array("Id is not defined for PUT request.", 500);
             }
         }
      }
