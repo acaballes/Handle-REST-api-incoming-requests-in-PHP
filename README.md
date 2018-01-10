@@ -1,10 +1,11 @@
 # README #
 
 # installation #
-1. git clone https://acaballes@bitbucket.org/acaballes/my-api.git
-2. You may set up a virtual host in the server or just the default is still okay
-3. create a database
-4. import the .sql file (data/product.sql) in your created database.
+1. There no special technique, just clone this repository into you local server or development machine
+2. You may set up a virtual host in the web server to run the application
+3. Create a mysql database
+4. Import the .sql file (data/product.sql) in your created database.
+  - in order to have a working example, i created a sample product table
 5. Change your database configurations in config/config.php.
 6. Everything is ready to go you can now call a simple api request
 
